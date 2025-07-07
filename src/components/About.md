@@ -1,0 +1,24 @@
+## Hi, I’m Konstant. 
+
+I run a small business called Konstant’s Pedal Supply, where I sell affordable guitar gear to musicians all across South Africa. 
+
+I’m an artist by day and an entrepreneur by night, combining creativity with a passion for great music. 
+
+Whether you’re looking to build your first pedalboard or add something new to your sound, I’m here to help
+with quality gear that won’t break the bank. 
+
+Every item is handpicked, tested, and shipped with care. I also assist with custom pedalboard setups and can help source gear and instruments, if you’re after something specific. 
+
+Let’s build your tone together, affordably, locally, and versatile.
+
+### Shipping information
+
+Based in Melkbosstrand, Cape Town, Western Cape
+
+
+| Area                                                | Cost           | 
+| --------------------------------------------------- | -------------- | 
+| Local (Melkboss, Blouberg, Tableview etc.)          | R50            | 
+| Courier delivery across South Africa                | Buyer's Cost   | 
+
+
