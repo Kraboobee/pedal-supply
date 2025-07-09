@@ -4,8 +4,12 @@ import { Astronav, MenuItems, MenuIcon,  Dropdown, DropdownItems } from "astro-n
 
 <header class="lg:flex p-5  gap-5">
   <Astronav>
-    <div class="flex w-full justify-between">
-      <a>Konstant's</a>
+    <div class="flex w-full justify-between prose">
+      <a>
+        <h2>
+          Konstant's
+        </h2>
+      </a>
       <div class="block lg:hidden">
         <MenuIcon class="w-4 h-4 text-gray-800" />
       </div>
@@ -33,7 +37,7 @@ import { Astronav, MenuItems, MenuIcon,  Dropdown, DropdownItems } from "astro-n
             </button>
             <DropdownItems class="relative">
               <div class="absolute top-0">
-                <ul>
+                <ul class="p-1 mt-2 rounded-sm shadow-sm bg-base-100">
                   <li>Menu 1</li>
                   <li>Menu 2</li>
                   <li>Menu 3</li>
