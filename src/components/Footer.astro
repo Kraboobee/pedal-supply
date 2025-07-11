@@ -8,7 +8,7 @@ const { company } = Astro.props;
 const d = new Date();
 const year = d.getFullYear();
 ---
-<footer class="footer footer-center p-3 text-accent">
+<footer class="footer footer-center p-3 text-base-content bg-base-300">
     <aside>
     <div class="flex flex-col lg:flex-row justify-between gap-5 lg:gap-20 mx-auto">
       <p>{company} - Copyright © <span id="footer-year">{year}</span> | <a href="/terms" class="font-semibold">Terms & Conditions</a></p> 
