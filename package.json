@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
+    "@fontsource/convergence": "^5.2.6",
+    "@fontsource/ultra": "^5.2.6",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.10.2",
     "astro-navbar": "^2.4.0",

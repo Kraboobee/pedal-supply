@@ -36,24 +36,33 @@
   --noise: 0;
 }
 
+body {
+  font-family: 'Convergence', sans-serif;
+  & h1, h2 {
+    font-family: 'Ultra', serif;
+  }
+}
+
 h1 { 
   font-size: 1.6rem;
-  font-weight: 800;
 }
 
 h2 {
   font-size: 1.4rem;
-  font-weight: 700;
+  color: var(--color-primary);
+}
+
+#nav-title {
+  color: var(--color-base-content);
 }
 
 h3 {
   font-size: 1.2rem;
-  font-weight: 700;
+  color: var(--color-secondary);
 }
 
 h4 {
   font-size: 1.2rem;
-  font-weight: 700;
 }
 
 .hidden {
