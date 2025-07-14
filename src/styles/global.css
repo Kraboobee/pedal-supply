@@ -72,19 +72,23 @@
 }
 
 body {
-  font-family: 'Convergence', sans-serif;
+  font-family: 'IBM Plex Sans Variable', sans-serif;
+  /* font-family: 'Convergence', sans-serif; */
   & h1, h2 {
-    font-family: 'Ultra', serif;
+  font-family: 'IBM Plex Sans Variable', sans-serif;
+    /* font-family: 'Ultra', serif; */
   }
 }
 
 h1 { 
   font-size: 1.6rem;
+  font-weight: 700;
 }
 
 h2 {
   font-size: 1.4rem;
   color: var(--color-primary);
+  font-weight: 600;
 }
 
 #nav-title {

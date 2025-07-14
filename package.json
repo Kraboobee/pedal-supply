@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.2.6",
     "@fontsource/convergence": "^5.2.6",
     "@fontsource/ultra": "^5.2.6",
     "@tailwindcss/vite": "^4.1.11",
