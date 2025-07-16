@@ -1,0 +1,27 @@
+---
+// src/pages/pedals.astro
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const pedals = await getCollection('pedals');
+---
+
+<Layout title="Guitar Pedals">
+  <main>
+    <h1>Our Guitar Pedals</h1>
+    
+    <div class="pedals-grid">
+      {pedals.map((pedal) => (
+        <div class="pedal-card">
+          <img src={pedal.data.image} alt={pedal.data.name} />
+          <h2>{pedal.data.name}</h2>
+          <p class="price">${pedal.data.price}</p>
+          <p class="description">{pedal.data.description}</p>
+          <a href={`/pedals/${pedal.slug}`}>View Details</a>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+
