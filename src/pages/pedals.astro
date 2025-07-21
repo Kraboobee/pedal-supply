@@ -8,14 +8,16 @@ const pedals = await getCollection('pedals');
 
 <Layout title="Guitar Pedals">
   <main>
-    <h1>Our Guitar Pedals</h1>
     
-    <div class="pedals-grid">
+    <div class="flex flex-col gap-5 ">
+    <h1>Our Guitar Pedals</h1>
       {pedals.map((pedal) => (
-        <div class="pedal-card">
+      <div class="pedal-card rounded-sm shadow-sm p-4 w-3/4">
+        <a href={`/pedals/${pedal.slug}`}>
+          <h1>{pedal.data.name}</h1>
+        </a>
           <img src={pedal.data.image} alt={pedal.data.name} />
-          <h2>{pedal.data.name}</h2>
-          <p class="price">${pedal.data.price}</p>
+          <h3 class="price">Price: R {pedal.data.price}</h3>
           <p class="description">{pedal.data.description}</p>
           <a href={`/pedals/${pedal.slug}`}>View Details</a>
         </div>

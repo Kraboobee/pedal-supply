@@ -1,11 +1,11 @@
 ---
 name: "Volwah"
-price: 149.99
+price: 350
 image: "/images/default-image.png"
 description: "A classic tube-screamer style overdrive pedal with warm, natural saturation perfect for blues and rock tones."
 ---
 
-# Vintage Overdrive Pro
+
 
 This pedal delivers the classic mid-focused overdrive sound that has defined rock music for decades. With its simple three-knob interface (Drive, Tone, Level), you can easily dial in everything from subtle boost to heavy saturation.
 
