@@ -1,0 +1,42 @@
+---
+// src/pages/pedals/[...slug].astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const pedals = await getCollection('pedals');
+  return pedals.map((pedal) => ({
+    params: { slug: pedal.slug },
+    props: { pedal },
+  }));
+}
+
+const { pedal } = Astro.props;
+const { Content } = await pedal.render();
+---
+
+<Layout title={pedal.data.name}>
+  <main>
+    <div class="pedal-detail">
+      <div class="pedal-image">
+        <img src={pedal.data.image} alt={pedal.data.name} />
+      </div>
+      
+      <div class="pedal-info">
+        <h1>{pedal.data.name}</h1>
+        <h3 class="price">Price R {pedal.data.price}</h3>
+        <p class="description">{pedal.data.description}</p>
+        
+        <h2>Description</h2>
+        <div class="content">
+          <Content />
+        </div>
+        
+        <button class="contact-btn">Contact for Purchase</button>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+
+

@@ -1,6 +1,7 @@
 ---
 // src/pages/pedals/[...slug].astro
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -15,15 +16,19 @@ const { pedal } = Astro.props;
 const { Content } = await pedal.render();
 ---
 
-<Layout title={pedal.data.name}>
+<Layout title={pedal.data.title}>
   <main>
     <div class="pedal-detail">
       <div class="pedal-image">
-        <img src={pedal.data.image} alt={pedal.data.name} />
+        <Image
+          src={pedal.data.heroImage}
+          alt={pedal.data.title}
+          width={150}
+        />
       </div>
       
       <div class="pedal-info">
-        <h1>{pedal.data.name}</h1>
+        <h1>{pedal.data.title}</h1>
         <h3 class="price">Price R {pedal.data.price}</h3>
         <p class="description">{pedal.data.description}</p>
         
