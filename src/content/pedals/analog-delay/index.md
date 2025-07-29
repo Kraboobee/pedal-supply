@@ -1,7 +1,7 @@
 ---
 title: Analog Delay
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0009.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],

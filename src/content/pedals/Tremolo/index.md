@@ -1,7 +1,7 @@
 ---
 title: Tremolo
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0004.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],

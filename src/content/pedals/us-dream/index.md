@@ -1,7 +1,7 @@
 ---
-title: name
+title: US Dream
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0006.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],

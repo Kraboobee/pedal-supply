@@ -1,12 +1,12 @@
 ---
-title: name
+title: Looper
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0017.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],
   ]
-price: 350
+price: 600
 order: 3
 ---
 

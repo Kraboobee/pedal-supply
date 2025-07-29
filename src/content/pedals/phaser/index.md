@@ -1,12 +1,12 @@
 ---
-title: name
+title: Phaser
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0013.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],
   ]
-price: 350
+price: 400
 order: 3
 ---
 

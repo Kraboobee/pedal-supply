@@ -1,7 +1,7 @@
 ---
-title: name
+title: Vintage Overdrive
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0003.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],

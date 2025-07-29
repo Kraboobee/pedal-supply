@@ -1,7 +1,7 @@
 ---
-title: name
+title: Classic Chorus
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0008.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],

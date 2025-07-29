@@ -1,12 +1,12 @@
 ---
-title: name
+title: Dolamo Distortion
 description: Short desc
-heroImage: ./default-pedal.png
+heroImage: ./pedal-0014.jpg
 images:
   [
     [./default-pedal.png, ./default-pedal.png],
   ]
-price: 350
+price: 800
 order: 3
 ---
 
