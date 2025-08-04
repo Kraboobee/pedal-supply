@@ -1,39 +1,212 @@
 ---
 // src/pages/pedals.astro
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 
 const pedals = await getCollection('pedals');
 ---
 
 <Layout title="Guitar Pedals">
   <main>
-    
     <h1>Our Guitar Pedals</h1>
-    <div class="grid grid-cols-3 gap-5 ">
-      {pedals.map((pedal) => (
-      <div class="rounded-sm shadow-sm p-4 w-3/4">
+    
+    <div class="pedals-grid">
+      {pedals.map((pedal: CollectionEntry<'pedals'>) => (
+        <div class="pedal-card flex flex-col justify-between gap-4">
         <a href={`/pedals/${pedal.slug}`}>
-          <h1>{pedal.data.title}</h1>
         <Image
           src={pedal.data.heroImage}
           alt={pedal.data.title}
-          width={150}
+          width={250}
           class="rounded-md"
         />
+
+          <h2 class="mt-4">{pedal.data.title}</h2>
         </a>
-          <h3 class="price">Price: R {pedal.data.price}</h3>
+          <p class="price">R{pedal.data.price}</p>
           <p class="description">{pedal.data.description}</p>
-        <a href={`/pedals/${pedal.slug}`}>
-          <h4>
-            View Details
-          </h4>
-        </a>
+          <a id="detail-button" href={`/pedals/${pedal.slug}`}>View Details</a>
         </div>
       ))}
     </div>
   </main>
 </Layout>
 
-
+<style>
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1f2937;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .pedals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .pedal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pedal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .pedal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .pedal-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .pedal-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    /* margin-bottom: 1rem; */
+    transition: transform 0.3s ease;
+  }
+  
+  .pedal-card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .pedal-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    /* margin: 1rem 0 0.5rem 0; */
+    color: #1f2937;
+    line-height: 1.2;
+  }
+  
+  .price {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #2563eb;
+    /* margin: 0.5rem 0; */
+    text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+  }
+  
+  .description {
+    color: #6b7280;
+    /* margin: 1rem 0 1.5rem 0; */
+    line-height: 1.5;
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .pedal-card #detail-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pedal-card #detail-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+  
+  .pedal-card #detail-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px 0 rgba(37, 99, 235, 0.4);
+  }
+  
+  .pedal-card #detail-button:hover::before {
+    left: 100%;
+  }
+  
+  .pedal-card #detail-button:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      padding: 1rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .pedals-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .pedal-card {
+      padding: 1.25rem;
+    }
+    
+    .pedal-card img {
+      height: 200px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .pedal-card h2 {
+      font-size: 1.25rem;
+    }
+    
+    .price {
+      font-size: 1.5rem;
+    }
+  }
+</style>

@@ -2,11 +2,12 @@
 // src/pages/pedals/[...slug].astro
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const pedals = await getCollection('pedals');
-  return pedals.map((pedal) => ({
+  return pedals.map((pedal: CollectionEntry<'pedals'>) => ({
     params: { slug: pedal.slug },
     props: { pedal },
   }));
@@ -14,28 +15,67 @@ export async function getStaticPaths() {
 
 const { pedal } = Astro.props;
 const { Content } = await pedal.render();
+
+// Flatten the images array and combine with hero image
+const allImages = [pedal.data.heroImage, ...pedal.data.images.flat()];
+// Limit to maximum 4 images total
+const displayImages = allImages.slice(0, 4);
 ---
 
 <Layout title={pedal.data.title}>
   <main>
-    <a href="/pedals" >
-      <h4 class="mb-8">Back to pedals </h4>
-    </a>
+    <a href="/pedals" class="back-link">Back to All Pedals</a>
+    
     <div class="pedal-detail">
-      <div class="pedal-image">
-        <Image
-          src={pedal.data.heroImage}
-          alt={pedal.data.title}
-          width={150}
-        />
+      <div class="pedal-images">
+        <div class="main-image">
+          <Image 
+            id="mainImage" 
+            src={displayImages[0]} 
+            alt={pedal.data.title}
+            width={600}
+            height={450}
+            quality={90}
+          />
+        </div>
+        
+        {displayImages.length > 1 && (
+          <div class="thumbnail-grid">
+            {displayImages.map((image, index) => (
+              <Image 
+                src={image} 
+                alt={`${pedal.data.title} view ${index + 1}`}
+                class="thumbnail"
+                data-index={index}
+                width={120}
+                height={140}
+                quality={80}
+              />
+            ))}
+          </div>
+        )}
+        
+        <!-- Hidden high-res images for gallery switching -->
+        <div class="hidden-images" style="display: none;">
+          {displayImages.map((image, index) => (
+            <Image 
+              src={image}
+              alt={`${pedal.data.title} high-res ${index + 1}`}
+              class="high-res-image"
+              data-index={index}
+              width={600}
+              height={450}
+              quality={90}
+            />
+          ))}
+        </div>
       </div>
       
       <div class="pedal-info">
         <h1>{pedal.data.title}</h1>
-        <h3 class="price">Price R {pedal.data.price}</h3>
+        <p class="price">R{pedal.data.price}</p>
         <p class="description">{pedal.data.description}</p>
         
-        <h2>Description</h2>
         <div class="content">
           <Content />
         </div>
@@ -46,4 +86,351 @@ const { Content } = await pedal.render();
   </main>
 </Layout>
 
+<style>
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+  }
+  
+  .pedal-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pedal-detail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899, #f59e0b);
+  }
+  
+  .pedal-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .main-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    aspect-ratio: 4/5;
+  }
+  
+  .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .main-image:hover img {
+    transform: scale(1.05);
+  }
+  
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    max-width: 100%;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: #f8fafc;
+  }
+  
+  .thumbnail:hover {
+    border-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .thumbnail.active {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  }
+  
+  .pedal-info h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1f2937;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 1.5rem 0;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    border-radius: 16px;
+    border: 2px solid rgba(37, 99, 235, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .price::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+  }
+  
+  .price:hover::before {
+    left: 100%;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #2563eb;
+  }
+  
+  .content {
+    margin: 2rem 0;
+    color: #374151;
+    line-height: 1.7;
+  }
+  
+  .content h2 {
+    color: #1f2937;
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
+  }
+  
+  .content h3 {
+    color: #374151;
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 600;
+  }
+  
+  .content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .content li {
+    margin: 0.5rem 0;
+    color: #4b5563;
+  }
+  
+  .content p {
+    margin: 1rem 0;
+    color: #4b5563;
+  }
+  
+  .contact-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 1.25rem 2.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+  
+  .contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.5);
+  }
+  
+  .contact-btn:hover::before {
+    left: 100%;
+  }
+  
+  .contact-btn:active {
+    transform: translateY(-1px);
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #6b7280;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .back-link:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+  }
+  
+  .back-link::before {
+    content: '←';
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 1024px) {
+    .pedal-detail {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    
+    .pedal-images {
+      order: 1;
+    }
+    
+    .pedal-info {
+      order: 2;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      padding: 1rem;
+    }
+    
+    .pedal-detail {
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+    
+    .pedal-info h1 {
+      font-size: 2.5rem;
+    }
+    
+    .price {
+      font-size: 2rem;
+      padding: 0.75rem 1.5rem;
+    }
+    
+    .description {
+      font-size: 1.1rem;
+      padding: 1rem;
+    }
+    
+    .thumbnail-grid {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.75rem;
+    }
+    
+    .thumbnail {
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .pedal-info h1 {
+      font-size: 2rem;
+    }
+    
+    .price {
+      font-size: 1.75rem;
+    }
+    
+    .contact-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+    
+    .thumbnail-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
 
+<script>
+  // Image gallery functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const highResImages = document.querySelectorAll('.high-res-image');
+    
+    // Set first thumbnail as active
+    if (thumbnails.length > 0) {
+      thumbnails[0].classList.add('active');
+    }
+    
+    thumbnails.forEach(function(thumbnail, index) {
+      thumbnail.addEventListener('click', function() {
+        const clickedIndex = parseInt(thumbnail.getAttribute('data-index') || '0');
+        
+        // Find the corresponding high-res image
+        let highResImage = null;
+        for (let i = 0; i < highResImages.length; i++) {
+          const img = highResImages[i];
+          if (parseInt(img.getAttribute('data-index') || '0') === clickedIndex) {
+            highResImage = img;
+            break;
+          }
+        }
+        
+        if (mainImage && highResImage && mainImage.tagName === 'IMG' && highResImage.tagName === 'IMG') {
+          mainImage.setAttribute('src', highResImage.getAttribute('src') || '');
+          mainImage.setAttribute('alt', highResImage.getAttribute('alt') || '');
+        }
+        
+        // Update active thumbnail
+        thumbnails.forEach(function(t) {
+          t.classList.remove('active');
+        });
+        thumbnail.classList.add('active');
+      });
+    });
+  });
+</script>

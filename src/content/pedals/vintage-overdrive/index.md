@@ -1,14 +1,15 @@
 ---
 title: Vintage Overdrive
-description: Short desc
+description: From smooth blues grit to creamy lead boost
 heroImage: ./pedal-0003.jpg
 images:
   [
-    [./default-pedal.png, ./default-pedal.png],
+    [./pedal-0046.jpg, ./pedal-0048.jpg],
   ]
 price: 350
 order: 3
 ---
 
-Full Description 
-(Supports Markdown)
+This simple OD pedal delivers that signature rich, warm overdrive with vintage character.
+
+Ranging from a smooth blues grit, to a creamy lead boost, this pedal gives you all the Overdrive you’ll need. Featuring A Drive, Volume and Tone Knob to Dial in the specific Sound you want.
