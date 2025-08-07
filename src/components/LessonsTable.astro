@@ -1,0 +1,31 @@
+---
+const duration1 = "1,5 hour";
+const cost1 = 500;
+const duration2 = "45 minute";
+const cost2 = 300;
+---
+
+<div class="overflow-x-auto shadow-md rounded-box border border-base-content/5 ">
+  <table class="table">
+    <!-- head -->
+    <thead class="bg-base-300">
+      <tr>
+        <th>Duration</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody class="bg-base-200">
+      <!-- row 1 -->
+      <tr>
+        <td>{duration1} session</td>
+        <td>R{cost1}</td>
+      </tr>
+      <!-- row 2 -->
+      <tr>
+        <td>{duration2} session</td>
+        <td>R{cost2}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
