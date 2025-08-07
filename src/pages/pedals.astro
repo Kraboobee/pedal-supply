@@ -11,64 +11,41 @@ const pedals = await getCollection('pedals');
 
 <Layout title="Guitar Pedals">
   <main>
-    <h1>Our Guitar Pedals</h1>
-    
-    <div class="pedals-grid">
-      {pedals.map((pedal: CollectionEntry<'pedals'>) => (
-        <div class="pedal-card flex flex-col justify-between gap-4">
-        <a href={`/pedals/${pedal.slug}`}>
-        <Image
-          src={pedal.data.heroImage}
-          alt={pedal.data.title}
-          width={250}
-          class="rounded-md"
-        />
+    <div class="max-w-3/4 mx-auto p-2">
+      <h1>Our Guitar Pedals</h1>
+      
+      <div class="pedals-grid grid gap-8 mt-4">
+        {pedals.map((pedal: CollectionEntry<'pedals'>) => (
+          <div class="pedal-card flex flex-col justify-between gap-4 rounded-lg shadow-lg p-8 text-center">
+          <a href={`/pedals/${pedal.slug}`}>
+          <Image
+            src={pedal.data.heroImage}
+            alt={pedal.data.title}
+            width={250}
+            class="rounded-md"
+          />
 
-          <h2 class="mt-4">{pedal.data.title}</h2>
-        </a>
-          <p class="price">R{pedal.data.price}</p>
-          <p class="description">{pedal.data.description}</p>
-          <a id="detail-button" href={`/pedals/${pedal.slug}`}>View Details</a>
-        </div>
-      ))}
+            <h2 class="mt-8">{pedal.data.title}</h2>
+          </a>
+            <p class="price">R{pedal.data.price}</p>
+            <p class="description">{pedal.data.description}</p>
+            <a id="detail-button" href={`/pedals/${pedal.slug}`}>View Details</a>
+          </div>
+        ))}
+      </div>
     </div>
   </main>
 </Layout>
 
 <style>
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #1f2937;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
   .pedals-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
   }
   
   .pedal-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
+    /* border: 1px solid #e5e7eb; */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     position: relative;
     overflow: hidden;
   }
@@ -96,7 +73,7 @@ const pedals = await getCollection('pedals');
   
   .pedal-card img {
     width: 100%;
-    height: 220px;
+    height: 350px;
     object-fit: cover;
     border-radius: 8px;
     /* margin-bottom: 1rem; */
