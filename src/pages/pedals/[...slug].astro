@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import ImageGallery from '../../components/ImageGallery.vue';
 
 export async function getStaticPaths() {
   const pedals = await getCollection('pedals');
@@ -17,9 +18,24 @@ const { pedal } = Astro.props;
 const { Content } = await pedal.render();
 
 // Flatten the images array and combine with hero image
-const allImages = [pedal.data.heroImage, ...pedal.data.images.flat()];
-// Limit to maximum 4 images total
-const displayImages = allImages.slice(0, 4);
+// Handle case where images might be undefined or empty
+const additionalImages = pedal.data.images ? pedal.data.images.flat() : [];
+const allImages = [pedal.data.heroImage, ...additionalImages];
+
+// Prepare images for Vue component
+const galleryImages = await Promise.all(
+  allImages.map(async (image, index) => {
+    // For Astro Image components, we need to get the optimized URLs
+    const optimizedMain = await image;
+    const optimizedThumb = await image;
+    
+    return {
+      src: optimizedMain.src,
+      thumbnail: optimizedThumb.src, // You could create a smaller version here
+      alt: `${pedal.data.title} view ${index + 1}`
+    };
+  })
+);
 ---
 
 <Layout title={pedal.data.title}>
@@ -27,49 +43,11 @@ const displayImages = allImages.slice(0, 4);
     <a href="/pedals" class="back-link">Back to All Pedals</a>
     
     <div class="pedal-detail">
-      <div class="pedal-images">
-        <div class="main-image">
-          <Image 
-            id="mainImage" 
-            src={displayImages[0]} 
-            alt={pedal.data.title}
-            width={600}
-            height={450}
-            quality={90}
-          />
-        </div>
-        
-        {displayImages.length > 1 && (
-          <div class="thumbnail-grid">
-            {displayImages.map((image, index) => (
-              <Image 
-                src={image} 
-                alt={`${pedal.data.title} view ${index + 1}`}
-                class="thumbnail"
-                data-index={index}
-                width={120}
-                height={140}
-                quality={80}
-              />
-            ))}
-          </div>
-        )}
-        
-        <!-- Hidden high-res images for gallery switching -->
-        <div class="hidden-images" style="display: none;">
-          {displayImages.map((image, index) => (
-            <Image 
-              src={image}
-              alt={`${pedal.data.title} high-res ${index + 1}`}
-              class="high-res-image"
-              data-index={index}
-              width={600}
-              height={450}
-              quality={90}
-            />
-          ))}
-        </div>
-      </div>
+      <ImageGallery 
+        images={galleryImages}
+        title={pedal.data.title}
+        client:load
+      />
       
       <div class="pedal-info">
         <h1>{pedal.data.title}</h1>
@@ -115,62 +93,6 @@ const displayImages = allImages.slice(0, 4);
     right: 0;
     height: 6px;
     background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899, #f59e0b);
-  }
-  
-  .pedal-images {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .main-image {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-    aspect-ratio: 4/5;
-  }
-  
-  .main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .main-image:hover img {
-    transform: scale(1.05);
-  }
-  
-  .thumbnail-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1rem;
-    max-width: 100%;
-  }
-  
-  .thumbnail {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 12px;
-    cursor: pointer;
-    border: 3px solid transparent;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    background: #f8fafc;
-  }
-  
-  .thumbnail:hover {
-    border-color: #2563eb;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .thumbnail.active {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
   }
   
   .pedal-info h1 {
@@ -330,14 +252,6 @@ const displayImages = allImages.slice(0, 4);
       gap: 2rem;
       padding: 2rem;
     }
-    
-    .pedal-images {
-      order: 1;
-    }
-    
-    .pedal-info {
-      order: 2;
-    }
   }
   
   @media (max-width: 768px) {
@@ -363,15 +277,6 @@ const displayImages = allImages.slice(0, 4);
       font-size: 1.1rem;
       padding: 1rem;
     }
-    
-    .thumbnail-grid {
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 0.75rem;
-    }
-    
-    .thumbnail {
-      height: 120px;
-    }
   }
   
   @media (max-width: 480px) {
@@ -387,50 +292,5 @@ const displayImages = allImages.slice(0, 4);
       padding: 1rem 2rem;
       font-size: 1rem;
     }
-    
-    .thumbnail-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 </style>
-
-<script>
-  // Image gallery functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const mainImage = document.getElementById('mainImage');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    const highResImages = document.querySelectorAll('.high-res-image');
-    
-    // Set first thumbnail as active
-    if (thumbnails.length > 0) {
-      thumbnails[0].classList.add('active');
-    }
-    
-    thumbnails.forEach(function(thumbnail, index) {
-      thumbnail.addEventListener('click', function() {
-        const clickedIndex = parseInt(thumbnail.getAttribute('data-index') || '0');
-        
-        // Find the corresponding high-res image
-        let highResImage = null;
-        for (let i = 0; i < highResImages.length; i++) {
-          const img = highResImages[i];
-          if (parseInt(img.getAttribute('data-index') || '0') === clickedIndex) {
-            highResImage = img;
-            break;
-          }
-        }
-        
-        if (mainImage && highResImage && mainImage.tagName === 'IMG' && highResImage.tagName === 'IMG') {
-          mainImage.setAttribute('src', highResImage.getAttribute('src') || '');
-          mainImage.setAttribute('alt', highResImage.getAttribute('alt') || '');
-        }
-        
-        // Update active thumbnail
-        thumbnails.forEach(function(t) {
-          t.classList.remove('active');
-        });
-        thumbnail.classList.add('active');
-      });
-    });
-  });
-</script>
