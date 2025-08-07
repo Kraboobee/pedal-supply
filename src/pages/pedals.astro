@@ -1,8 +1,9 @@
 ---
 // src/pages/pedals.astro
+import Layout from '../layouts/Layout.astro';
+
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 
 const pedals = await getCollection('pedals');
