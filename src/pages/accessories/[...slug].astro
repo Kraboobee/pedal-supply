@@ -1,0 +1,297 @@
+---
+// src/pages/accessories/[...slug].astro
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ImageGallery from '../../components/ImageGallery.vue';
+
+export async function getStaticPaths() {
+  const accessories = await getCollection('accessories');
+  return accessories.map((accessory: CollectionEntry<'accessories'>) => ({
+    params: { slug: accessory.slug },
+    props: { accessory },
+  }));
+}
+
+const { accessory } = Astro.props;
+const { Content } = await accessory.render();
+
+// Flatten the images array and combine with hero image
+// Handle case where images might be undefined or empty
+const additionalImages = accessory.data.images ? accessory.data.images.flat() : [];
+const allImages = [accessory.data.heroImage, ...additionalImages];
+
+// Prepare images for Vue component
+const galleryImages = await Promise.all(
+  allImages.map(async (image, index) => {
+    // For Astro Image components, we need to get the optimized URLs
+    const optimizedMain = await image;
+    const optimizedThumb = await image;
+    
+    return {
+      src: optimizedMain.src,
+      thumbnail: optimizedThumb.src, // You could create a smaller version here
+      alt: `${accessory.data.title} view ${index + 1}`
+    };
+  })
+);
+---
+
+<Layout title={accessory.data.title}>
+  <main>
+    <a href="/accessories" class="back-link">Back to All accessories</a>
+    
+    <div class="accessory-detail">
+      <ImageGallery 
+        images={galleryImages}
+        title={accessory.data.title}
+        client:load
+      />
+      
+      <div class="accessory-info">
+        <h1>{accessory.data.title}</h1>
+        <p class="price">R{accessory.data.price}</p>
+        <p class="description">{accessory.data.description}</p>
+        
+        <div class="content">
+          <Content />
+        </div>
+        
+        <button class="contact-btn">Contact for Purchase</button>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+  }
+  
+  .accessory-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .accessory-detail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899, #f59e0b);
+  }
+  
+  .accessory-info h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1f2937;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 1.5rem 0;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    border-radius: 16px;
+    border: 2px solid rgba(37, 99, 235, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .price::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+  }
+  
+  .price:hover::before {
+    left: 100%;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #2563eb;
+  }
+  
+  .content {
+    margin: 2rem 0;
+    color: #374151;
+    line-height: 1.7;
+  }
+  
+  .content h2 {
+    color: #1f2937;
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
+  }
+  
+  .content h3 {
+    color: #374151;
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 600;
+  }
+  
+  .content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .content li {
+    margin: 0.5rem 0;
+    color: #4b5563;
+  }
+  
+  .content p {
+    margin: 1rem 0;
+    color: #4b5563;
+  }
+  
+  .contact-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 1.25rem 2.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+  
+  .contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.5);
+  }
+  
+  .contact-btn:hover::before {
+    left: 100%;
+  }
+  
+  .contact-btn:active {
+    transform: translateY(-1px);
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #6b7280;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .back-link:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+  }
+  
+  .back-link::before {
+    content: '←';
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 1024px) {
+    .accessory-detail {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      padding: 1rem;
+    }
+    
+    .accessory-detail {
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+    
+    .accessory-info h1 {
+      font-size: 2.5rem;
+    }
+    
+    .price {
+      font-size: 2rem;
+      padding: 0.75rem 1.5rem;
+    }
+    
+    .description {
+      font-size: 1.1rem;
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .accessory-info h1 {
+      font-size: 2rem;
+    }
+    
+    .price {
+      font-size: 1.75rem;
+    }
+    
+    .contact-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+
