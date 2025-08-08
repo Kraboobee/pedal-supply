@@ -1,14 +1,14 @@
 ---
-title: 8-way Pedal Power Supply 
-description: A single power supply for your entire pedalboard. 
+title: Mini Guitar Amp Pick Holder
+description: Novelty pick holder
 heroImage: ./pedal-0007.jpg
 images:
   [
     [./default-pedal.png],
   ]
-price: 350
+price: 100
 order: 3
 ---
 
-This unit can power up to 8 pedals at once (Standard Boss 9V power)
-
+Store your picks in a mini Guitar amp. 
+Available in your choice of colour:

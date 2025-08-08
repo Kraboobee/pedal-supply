@@ -1,6 +1,6 @@
 ---
-title: 8-way Pedal Power Supply 
-description: A single power supply for your entire pedalboard. 
+title: 5pc Stylised Picks
+description: A set of 5 stylised guitar picks
 heroImage: ./pedal-0007.jpg
 images:
   [
@@ -10,5 +10,4 @@ price: 350
 order: 3
 ---
 
-This unit can power up to 8 pedals at once (Standard Boss 9V power)
-
+A set of 5 stylised guitar picks

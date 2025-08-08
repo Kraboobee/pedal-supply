@@ -1,14 +1,16 @@
 ---
-title: 8-way Pedal Power Supply 
-description: A single power supply for your entire pedalboard. 
+title: Small pedalboard
+description: Small pedalboard 
 heroImage: ./pedal-0007.jpg
 images:
   [
     [./default-pedal.png],
   ]
-price: 350
+price: 600
 order: 3
 ---
 
-This unit can power up to 8 pedals at once (Standard Boss 9V power)
+Organize your pedals on a high-quality pedalboard. 
+Includes carry case and velcro tape.
+
 

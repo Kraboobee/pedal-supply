@@ -1,14 +1,14 @@
 ---
-title: 8-way Pedal Power Supply 
-description: A single power supply for your entire pedalboard. 
+title: Ungrounded Patch Cables (6)
+description: Set of 6 ungrounded patch cables
 heroImage: ./pedal-0007.jpg
 images:
   [
     [./default-pedal.png],
   ]
-price: 350
+price: 200
 order: 3
 ---
 
-This unit can power up to 8 pedals at once (Standard Boss 9V power)
+Connect up to 6 pedals with this set of patch cables
 
