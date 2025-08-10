@@ -1,22 +1,28 @@
+---
+const localCost = "R50"
+const nationalCost = "Buyer's Cost"
+---
 
+
+<div class="overflow-x-auto shadow-sm rounded-box border border-base-content/5 ">
   <table class="table">
     <!-- head -->
-    <thead class="bg-base-300">
+    <thead class="bg-primary text-primary-content">
       <tr>
         <th>Area</th>
         <th>Cost</th>
       </tr>
     </thead>
-    <tbody class="bg-base-200">
+    <tbody>
       <!-- row 1 -->
       <tr>
         <td>Local (Melkboss, Blouberg, Tableview etc.)</td>
-        <td>R50</td>
+        <td>{localCost}</td>
       </tr>
       <!-- row 2 -->
       <tr>
         <td>National (via Courier)</td>
-        <td>Buyer's Cost</td>
+        <td>{nationalCost}</td>
       </tr>
     </tbody>
   </table>
