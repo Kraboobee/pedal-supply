@@ -59,7 +59,7 @@ const setCurrentImage = (index: number) => {
   border-radius: 16px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-  aspect-ratio: 4/3;
+  aspect-ratio: 4/5;
 }
 
 .main-img {

@@ -9,27 +9,27 @@ import { Image } from 'astro:assets';
 const accessories = await getCollection('accessories');
 ---
 
-<Layout title="Guitar accessories">
+<Layout title="Guitar Accessories">
   <main>
     <div class="max-w-3/4 mx-auto p-2">
-      <h1>Our Guitar accessories</h1>
+      <h1>Our Guitar Accessories</h1>
       
       <div class="accessories-grid grid gap-8 mt-4">
         {accessories.map((accessory: CollectionEntry<'accessories'>) => (
-          <div class="accessory-card flex flex-col justify-between gap-4 rounded-lg shadow-lg p-8 text-center">
+          <div class="accessory-card flex flex-col justify-between gap-4 rounded-lg shadow-lg p-8 text-center relative overflow-hidden">
           <a href={`/accessories/${accessory.slug}`}>
           <Image
             src={accessory.data.heroImage}
             alt={accessory.data.title}
-            width={250}
-            class="rounded-md"
+            width={350}
+            class="rounded-md w-full"
           />
 
             <h2 class="mt-8">{accessory.data.title}</h2>
           </a>
-            <p class="price">R{accessory.data.price}</p>
+            <h3 class="price font-bold">R{accessory.data.price}</h3>
             <p class="description">{accessory.data.description}</p>
-            <a id="detail-button" href={`/accessories/${accessory.slug}`}>View Details</a>
+            <a id="detail-button" class="text-primary-content" href={`/accessories/${accessory.slug}`}>View Details</a>
           </div>
         ))}
       </div>
@@ -46,8 +46,6 @@ const accessories = await getCollection('accessories');
     transition: all 0.3s ease;
     /* border: 1px solid #e5e7eb; */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    position: relative;
-    overflow: hidden;
   }
   
   .accessory-card::before {
@@ -72,11 +70,9 @@ const accessories = await getCollection('accessories');
   }
   
   .accessory-card img {
-    width: 100%;
     height: 350px;
     object-fit: cover;
     border-radius: 8px;
-    /* margin-bottom: 1rem; */
     transition: transform 0.3s ease;
   }
   
@@ -84,27 +80,8 @@ const accessories = await getCollection('accessories');
     transform: scale(1.05);
   }
   
-  .accessory-card h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    /* margin: 1rem 0 0.5rem 0; */
-    color: #1f2937;
-    line-height: 1.2;
-  }
-  
-  .price {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #2563eb;
-    /* margin: 0.5rem 0; */
-    text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-  }
-  
   .description {
-    color: #6b7280;
-    /* margin: 1rem 0 1.5rem 0; */
-    line-height: 1.5;
-    font-size: 0.95rem;
+    /* color: #6b7280; */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -114,7 +91,7 @@ const accessories = await getCollection('accessories');
   .accessory-card #detail-button {
     display: inline-block;
     background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
+    /* color: white; */
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     border-radius: 8px;

@@ -9,13 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/mdx": "4.3.3",
     "@astrojs/vue": "^5.1.0",
     "@fontsource-variable/ibm-plex-sans": "^5.2.6",
     "@fontsource/convergence": "^5.2.6",
     "@fontsource/ultra": "^5.2.6",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.10.2",
+    "astro": "5.12.9",
     "astro-navbar": "^2.4.0",
     "tailwindcss": "^4.1.11",
     "vue": "^3.5.18"
