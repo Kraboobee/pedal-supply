@@ -1,27 +1,79 @@
 ---
-import { Astronav, MenuItems, MenuIcon,  Dropdown, DropdownItems } from "astro-navbar";
+import { Image } from "astro:assets";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import logo from "@assets/images/konstant-no-bg.png"
 ---
 
-<header class="lg:flex p-5  gap-5">
-  <Astronav>
-    <div class="flex w-full justify-between prose">
+<div class="lg:hidden">
+  <Astronav closeOnClick>
+    <div class="flex flex-row justify-between py-2 px-5">
       <a href="/">
-        <h2 id="nav-title">
-          Logo
-        </h2>
+<Image src={logo} alt="Konstant" width={80} loading="eager" />
       </a>
-      <div class="block lg:hidden">
-        <MenuIcon class="w-4 h-4 text-gray-800" />
-      </div>
+        <MenuIcon class="w-8 h-8 text-gray-800 mr-4" />
     </div>
-    <MenuItems class="lg:flex">
-      <ul class="flex flex-col lg:flex-row lg:gap-5 items-center">
-        <li><a href="/pedals">Pedals</a></li>
-        <li><a href="/accessories">Accessories</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
+    <!--
+    // add `hidden` class by default for mobile
+    // `lg:flex` is to make it visible in desktop
+    // You may use custom CSS instead.
+    -->
+    <MenuItems class="hidden lg:flex mr-4 absolute menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 right-0 top-16 transition-opacity ">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/pedals">Pedals</a></li>
+            <li><a href="/accessories">Pricing</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+      
     </MenuItems>
   </Astronav>
-</header>
+</div>
+
+
+<div id="desktop-menu" class="xl:w-3/4 px-10 py-5 mx-auto  lg:block">
+  <div class="flex flex-row justify-around items-center text-lg font-bold">
+    <a href="/pedals">
+      <h2 class="p-2 px-4 btn btn-ghost btn-rounded transition-all ease-in-out duration-300 hover:scale-110">
+        Pedals
+      </h2>
+    </a>
+    <a href="/accessories">
+      <h2 class="p-2 px-4 btn btn-ghost btn-rounded transition-all ease-in-out duration-300 hover:scale-110">
+        Accessories
+      </h2>
+    </a>
+    <a href="/">
+<Image src={logo} alt="Konstant" width={130} loading="eager" />
+    </a>
+    <a href="/services">
+      <h2 class="p-2 px-4 btn btn-ghost btn-rounded transition-all ease-in-out duration-300 hover:scale-110">
+        Services
+      </h2>
+    </a>  
+    <a href="/contact">
+      <h2 class="p-2 px-4 btn btn-ghost btn-rounded transition-all ease-in-out duration-300 hover:scale-110">
+        Contact
+      </h2>
+    </a>
+
+  </div>
+</div>
+
+<style>
+@media screen and (max-width: 1024px){
+  #desktop-menu {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    display: none;
+  }
+}
+
+#desktop-menu h2:hover {
+    color: var(--color-primary-content);
+    background-color: var(--color-primary);
+  
+}
+</style>
+
