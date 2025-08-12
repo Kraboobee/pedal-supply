@@ -44,7 +44,7 @@ const accessories = await getCollection('accessories');
   
   .accessory-card {
     transition: all 0.3s ease;
-    /* border: 1px solid #e5e7eb; */
+    border: 1px solid var(--color-base-200);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
   
@@ -55,7 +55,7 @@ const accessories = await getCollection('accessories');
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-primary), var(--color-accent));
     transform: scaleX(0);
     transition: transform 0.3s ease;
   }
@@ -90,7 +90,7 @@ const accessories = await getCollection('accessories');
   
   .accessory-card #detail-button {
     display: inline-block;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     /* color: white; */
     padding: 0.75rem 1.5rem;
     text-decoration: none;
@@ -98,7 +98,7 @@ const accessories = await getCollection('accessories');
     font-weight: 500;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(37, 99, 235, 0.3);
     position: relative;
     overflow: hidden;
   }
@@ -116,7 +116,7 @@ const accessories = await getCollection('accessories');
   
   .accessory-card #detail-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px 0 rgba(37, 99, 235, 0.4);
+    box-shadow: 0 8px 14px 0 rgba(37, 99, 235, 0.4);
   }
   
   .accessory-card #detail-button:hover::before {
