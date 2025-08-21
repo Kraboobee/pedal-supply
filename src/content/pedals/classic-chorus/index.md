@@ -1,7 +1,7 @@
 ---
 title: Classic Chorus
 description: Depth, shimmer and dimension
-heroImage: ./pedal-0008.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0051.jpg, ./pedal-0052.jpg, ./pedal-0053.jpg],

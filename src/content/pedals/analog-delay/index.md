@@ -1,7 +1,7 @@
 ---
 title: Analog Delay
 description: Rich, warm echoes with that unmistakeable vintage character
-heroImage: ./pedal-0009.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0068.jpg, ./pedal-0069.jpg, ./pedal-0070.jpg],

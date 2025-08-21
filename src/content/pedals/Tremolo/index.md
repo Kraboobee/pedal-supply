@@ -1,7 +1,7 @@
 ---
 title: Tremolo
 description: Rich, pulsing tremolo
-heroImage: ./pedal-0004.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0040.jpg, ./pedal-0041.jpg, ./pedal-0042.jpg],

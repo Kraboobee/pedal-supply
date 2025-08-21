@@ -1,7 +1,7 @@
 ---
 title: Vintage Overdrive
 description: From smooth blues grit to creamy lead boost
-heroImage: ./pedal-0003.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0046.jpg, ./pedal-0048.jpg],

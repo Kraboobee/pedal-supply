@@ -1,7 +1,7 @@
 ---
 title: Digital Delay
 description: Crisp and precise echo effects
-heroImage: ./pedal-0005.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0056.jpg, ./pedal-0057.jpg, ./pedal-0059.jpg],

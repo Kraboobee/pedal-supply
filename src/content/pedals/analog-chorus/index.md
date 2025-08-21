@@ -1,7 +1,7 @@
 ---
 title: Analog Chorus
 description: Short desc
-heroImage: ./pedal-0007.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./default-pedal.png],

@@ -1,7 +1,7 @@
 ---
 title: Bass EQ
 description: Short desc
-heroImage: ./pedal-0016.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./default-pedal.png],

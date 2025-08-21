@@ -1,7 +1,7 @@
 ---
 title: Sonicake Volwah
 description: Volume and wah, all in one place
-heroImage: ./pedal-0015.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0113.jpg, ./pedal-0114.jpg, ./pedal-0115.jpg],

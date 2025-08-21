@@ -1,7 +1,7 @@
 ---
 title: US Dream
 description: Screaming lead sustain and rich, saturated distortion
-heroImage: ./pedal-0006.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0044.jpg, ./pedal-0062.jpg, ./pedal-0063.jpg],

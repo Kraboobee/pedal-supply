@@ -1,7 +1,7 @@
 ---
 title: Guitar EQ
 description: Short desc
-heroImage: ./pedal-0018.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./default-pedal.png],

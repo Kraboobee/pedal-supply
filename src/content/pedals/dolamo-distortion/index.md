@@ -1,7 +1,7 @@
 ---
 title: Dolamo Distortion
 description: Straightforward, classic distortion tones
-heroImage: ./pedal-0014.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0104.jpg, ./pedal-0105.jpg, ./pedal-0106.jpg],

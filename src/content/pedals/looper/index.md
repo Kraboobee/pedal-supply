@@ -1,7 +1,7 @@
 ---
 title: Looper
 description: Short desc
-heroImage: ./pedal-0017.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./default-pedal.png],

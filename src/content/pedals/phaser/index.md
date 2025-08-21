@@ -1,7 +1,7 @@
 ---
 title: Phaser
 description: Classic phase shifting with a subtle chorus-like feel.
-heroImage: ./pedal-0013.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0074.jpg, ./pedal-0076.jpg, ./pedal-0077.jpg],

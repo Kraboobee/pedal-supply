@@ -1,7 +1,7 @@
 ---
 title: Dolamo Reverb
 description: Classic spring reverb tones reminiscent of vintage amplifiers
-heroImage: ./pedal-0011.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0089.jpg, ./pedal-0090.jpg],

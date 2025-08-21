@@ -1,7 +1,7 @@
 ---
 title: Dolamo Fuzz
 description: The classic fuzz tones of vintage silicon circuits
-heroImage: ./pedal-0012.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0096.jpg, ./pedal-0097.jpg, ./pedal-0099.jpg],

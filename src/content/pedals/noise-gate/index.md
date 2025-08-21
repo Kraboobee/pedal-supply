@@ -1,7 +1,7 @@
 ---
 title: Noise Gate
 description: Tame the noise without killing your sound
-heroImage: ./pedal-0019.jpg
+heroImage: ./pedal.jpg
 images:
   [
     [./pedal-0082.jpg, ./pedal-0083.jpg, ./pedal-0084.jpg],
