@@ -8,7 +8,7 @@ const pedalsCollection = defineCollection({
       description: z.string(),
       heroImage: image(),
       images: z.array(
-        z.array(image()).refine((arr) => [1, 2, 3].includes(arr.length), {
+        z.array(image()).refine((arr) => [0, 1, 2, 3].includes(arr.length), {
           message: "Each sub-array must contain 1, 2, or 3 items",
         }),
       ),
@@ -26,7 +26,7 @@ const accessoriesCollection = defineCollection({
       description: z.string(),
       heroImage: image(),
       images: z.array(
-        z.array(image()).refine((arr) => [1, 2, 3].includes(arr.length), {
+        z.array(image()).refine((arr) => [0, 1, 2, 3].includes(arr.length), {
           message: "Each sub-array must contain 1, 2, or 3 items",
         }),
       ),
