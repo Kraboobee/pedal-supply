@@ -4,7 +4,7 @@ description: Small pedalboard
 heroImage: ./pedal-0007.jpg
 images:
   [
-    [./default-pedal.png],
+    [],
   ]
 price: 600
 order: 3

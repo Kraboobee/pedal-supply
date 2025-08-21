@@ -4,7 +4,7 @@ description: A single power supply for your entire pedalboard.
 heroImage: ./pedal-0007.jpg
 images:
   [
-    [./default-pedal.png],
+    [],
   ]
 price: 350
 order: 3

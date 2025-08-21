@@ -4,7 +4,7 @@ description: Novelty pick holder
 heroImage: ./pedal-0007.jpg
 images:
   [
-    [./default-pedal.png],
+    [],
   ]
 price: 50
 order: 3
