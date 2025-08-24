@@ -1,7 +1,7 @@
 ---
 title: Ungrounded Patch Cables (6)
 description: Set of 6 ungrounded patch cables
-heroImage: ./pedal-0007.jpg
+heroImage: ./product.jpg
 images:
   [
     [],

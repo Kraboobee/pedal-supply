@@ -1,7 +1,7 @@
 ---
 title: 8-way Pedal Power Supply 
 description: A single power supply for your entire pedalboard. 
-heroImage: ./pedal-0007.jpg
+heroImage: ./product.jpg
 images:
   [
     [],

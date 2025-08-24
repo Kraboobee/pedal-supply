@@ -1,7 +1,7 @@
 ---
 title: Small pedalboard
 description: Small pedalboard 
-heroImage: ./pedal-0007.jpg
+heroImage: ./product.jpg
 images:
   [
     [],

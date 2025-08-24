@@ -1,7 +1,7 @@
 ---
 title: Mini Marshall Amp Pick Holder
 description: Novelty pick holder
-heroImage: ./pedal-0007.jpg
+heroImage: ./product.jpg
 images:
   [
     [],
