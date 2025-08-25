@@ -6,7 +6,7 @@ images:
   [
     [],
   ]
-price: 350
+price: 50
 order: 3
 ---
 

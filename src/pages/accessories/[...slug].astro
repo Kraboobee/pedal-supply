@@ -15,6 +15,9 @@ export async function getStaticPaths() {
 }
 
 const { accessory } = Astro.props;
+const phoneNumber = "27728237542" 
+const encodedMessage = encodeURIComponent(`Hi Konstant, I'm interested in the ${accessory.data.title}`);
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 const { Content } = await accessory.render();
 
 // Flatten the images array and combine with hero image
@@ -57,8 +60,11 @@ const galleryImages = await Promise.all(
         <div class="content">
           <Content />
         </div>
-        
+        <a href={whatsappUrl} 
+   target="_blank" 
+   class="whatsapp-button">
         <button class="contact-btn">Contact for Purchase</button>
+</a>
       </div>
     </div>
   </main>
