@@ -1,13 +1,14 @@
 ---
 title: Bass EQ
-description: A versatile tone-shaping tool made just for your bass
+description: Cut through the mix with this bass guitar EQ
 heroImage: ./pedal.jpg
 images:
   [
-    [],
+    [./pedal-1.jpg, ./pedal-2.jpg, ./pedal-3.jpg],
   ]
 price: 600
 order: 3
 ---
 
-This pedal allows you to cut through the mix with your bass guitar.
+A versatile tone-shaping tool made just for your bass.
+This pedal is a 5-band EQ with a dedicated volume knob. 

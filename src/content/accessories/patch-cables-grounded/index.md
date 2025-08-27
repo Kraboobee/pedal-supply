@@ -4,7 +4,7 @@ description: Set of 6 ungrounded patch cables
 heroImage: ./product.jpg
 images:
   [
-    [],
+    [./product-1.jpg, ./product-2.jpg],
   ]
 price: 500
 order: 3

@@ -4,7 +4,7 @@ description: Medium sized pedalboard
 heroImage: ./product.jpg
 images:
   [
-    [],
+    [./product-1.jpg, ./product-2.jpg, ./product-3.jpg],
   ]
 price: 1000
 order: 3

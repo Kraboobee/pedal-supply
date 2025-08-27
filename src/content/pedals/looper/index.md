@@ -1,14 +1,13 @@
 ---
 title: Looper
-description: Short desc
+description: Be the band with this affordable loop pedal
 heroImage: ./pedal.jpg
 images:
   [
-    [],
+    [./pedal-1.jpg, ./pedal-2.jpg, ./pedal-3.jpg,],
   ]
 price: 600
 order: 3
 ---
 
-Full Description 
-(Supports Markdown)
+A fully functional loop pedal with a tiny footprint. 
