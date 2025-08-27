@@ -1,11 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro"
 import ContactInfo from "@markdowns/ContactInfo.mdx"
+import { Image } from "astro:assets"
+import profile from "@assets/images/konstant-profile.jpg"
 ---
 
 <Layout> 
   <div class="max-w-3/4 mx-auto flex flex-col">
+<Image src={profile} alt="Konstant Wiesner" width={300} class="rounded-md shadow-md" />
+    <div class="prose">
     <ContactInfo />
+    </div>
   </div>
 </Layout>
 
