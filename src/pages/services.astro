@@ -3,12 +3,64 @@ import Layout from "@layouts/Layout.astro"
 import Lessons from "@markdowns/Lessons.mdx"
 import { Image } from "astro:assets"
 import lessons from "@assets/images/lessons.jpg"
+
+const phoneNumber = "27728237542" 
+const encodedMessage = encodeURIComponent(`Hi Konstant, I'm interested in your guitar lessons`);
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 ---
 
 <Layout> 
   <div class="max-w-3/4 mx-auto p-4 flex flex-col gap-4">
 <Image src={lessons} alt="Konstant Wiesner" width={300} class="rounded-md shadow-md" />
   <Lessons />
+  <a href={whatsappUrl} 
+    target="_blank" 
+    class="whatsapp-button">
+    <button class="contact-btn">Contact Me</button>
+  </a>
   </div>
 </Layout>
 
+<style>
+.contact-btn {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 1.25rem 2.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+  
+  .contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.5);
+  }
+  
+  .contact-btn:hover::before {
+    left: 100%;
+  }
+  
+  .contact-btn:active {
+    transform: translateY(-1px);
+  }
+  
+</style>
