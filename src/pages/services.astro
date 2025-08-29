@@ -2,12 +2,12 @@
 import Layout from "@layouts/Layout.astro"
 import Lessons from "@markdowns/Lessons.mdx"
 import { Image } from "astro:assets"
-import services from "@assets/images/services.jpg"
+import lessons from "@assets/images/lessons.jpg"
 ---
 
 <Layout> 
   <div class="max-w-3/4 mx-auto p-4 flex flex-col gap-4">
-<Image src={services} alt="Konstant Wiesner" width={300} class="rounded-md shadow-md" />
+<Image src={lessons} alt="Konstant Wiesner" width={300} class="rounded-md shadow-md" />
   <Lessons />
   </div>
 </Layout>
