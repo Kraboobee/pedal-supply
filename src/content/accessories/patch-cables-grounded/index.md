@@ -1,6 +1,6 @@
 ---
 title: Grounded Patch Cables (6)
-description: Set of 6 ungrounded patch cables
+description: Set of 6 grounded patch cables
 heroImage: ./product.jpg
 images:
   [
